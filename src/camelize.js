@@ -1,3 +1,8 @@
-function camelize(string){
-	return string.replace(/_([a-z])/g, function(matchedSubstring, charAfterUnderscore){
-		return charAfterUnderscore.toUpperCase();});}
+var camelize = (function(){
+	var underscoreFollowedByLowercaseCharRE = /_([a-z])/g;
+
+	function returnUpcasedCharAfterUnderscore(matchedSubstring, charAfterUnderscore){
+		return charAfterUnderscore.toUpperCase();}
+
+	return function(string){
+		return string.replace(underscoreFollowedByLowercaseCharRE, returnUpcasedCharAfterUnderscore);};})();
